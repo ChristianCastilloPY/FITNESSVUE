@@ -123,3 +123,49 @@
 
 
 <script>
+export default{
+    data(){
+        return{
+            products:[],
+            categories:[]
+
+        }
+    },
+    created(){
+        this.getProducts();
+        this.getCategories();
+    },
+    methods: {
+        getProducts() {
+            // const url = this.baseUrlApi + 'directories'
+            const url_P = 
+            'http://fundamentos.academlo.com/api/v1/categories/e9321038-184f-42d9-93cf-902d14f50eed/products'
+           
+            axios.get(url_P)
+                .then(response => {
+                    this.products = response.data
+                })
+                .catch(error => {
+                    console.log(error.response)
+                    alert('Tuvimos un error cargando la información')
+                })
+        },
+              getCategories() {
+            // const url = this.baseUrlApi + 'directories'
+            const URL_C =
+    'http://fundamentos.academlo.com/api/v1/directories/1cf59506-c22e-4037-858c-d8d517f44e6f/categories'
+
+            axios.get(URL_C)
+                .then(response => {
+                    this.categories = response.data
+                                        console.log(this.categories.categories)
+
+                })
+                .catch(error => {
+                    console.log(error.response)
+                    alert('Tuvimos un error cargando la información')
+                })
+        },
+    }
+}
+</script>
